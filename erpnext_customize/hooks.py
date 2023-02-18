@@ -103,6 +103,17 @@ app_license = "MIT"
 #	}
 # }
 
+
+# for client
+doctype_js = {
+	"Attendance": "public/js/attendance.js"
+}
+# for server
+# doc_events = {
+# 	"Doctype": {"method": "path.function"}
+# }
+
+
 # Scheduled Tasks
 # ---------------
 

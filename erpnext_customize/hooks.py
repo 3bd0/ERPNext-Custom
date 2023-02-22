@@ -109,9 +109,12 @@ doctype_js = {
 	"Attendance": "public/js/attendance.js"
 }
 # for server
-# doc_events = {
-# 	"Doctype": {"method": "path.function"}
-# }
+doc_events = {
+	"Sales Invoice":
+		{"validate": ["erpnext_customize.erpnext_customize.doc_event.sales_invoice.add_item_note",
+					  "erpnext_customize.erpnext_customize.doc_event.sales_invoice.check_payment_pos"
+					  ]}
+}
 
 
 # Scheduled Tasks

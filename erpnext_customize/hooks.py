@@ -91,6 +91,10 @@ app_license = "MIT"
 #	"ToDo": "custom_app.overrides.CustomToDo"
 # }
 
+override_doctype_class = {
+    "Purchase Order": "erpnext_customize.erpnext_customize.overrides.purchase_order.PurchaseOrder"
+}
+
 # Document Events
 # ---------------
 # Hook on document methods and events
@@ -106,16 +110,21 @@ app_license = "MIT"
 
 # for client
 doctype_js = {
-	"Attendance": "public/js/attendance.js"
+    "Attendance": "public/js/attendance.js",
+    "Purchase Order": "public/js/purchase_order.js",
+    "Quotation": "public/js/quotation.js",
+    "Sales Invoice": "public/js/sales_invoice.js",
 }
 # for server
 doc_events = {
-	"Sales Invoice":
-		{"validate": ["erpnext_customize.erpnext_customize.doc_event.sales_invoice.add_item_note",
-					  "erpnext_customize.erpnext_customize.doc_event.sales_invoice.check_payment_pos"
-					  ]}
+    "Sales Invoice":
+        {"validate": ["erpnext_customize.erpnext_customize.doc_event.sales_invoice_event.add_item_note",
+                      "erpnext_customize.erpnext_customize.doc_event.sales_invoice_event.check_payment_pos"
+                      ],
+         "on_submit": [
+             "erpnext_customize.erpnext_customize.doc_event.sales_invoice_event.check_customer_discount"
+         ]}
 }
-
 
 # Scheduled Tasks
 # ---------------
@@ -166,24 +175,24 @@ doc_events = {
 # --------------------
 
 user_data_fields = [
-	{
-		"doctype": "{doctype_1}",
-		"filter_by": "{filter_by}",
-		"redact_fields": ["{field_1}", "{field_2}"],
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_2}",
-		"filter_by": "{filter_by}",
-		"partial": 1,
-	},
-	{
-		"doctype": "{doctype_3}",
-		"strict": False,
-	},
-	{
-		"doctype": "{doctype_4}"
-	}
+    {
+        "doctype": "{doctype_1}",
+        "filter_by": "{filter_by}",
+        "redact_fields": ["{field_1}", "{field_2}"],
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_2}",
+        "filter_by": "{filter_by}",
+        "partial": 1,
+    },
+    {
+        "doctype": "{doctype_3}",
+        "strict": False,
+    },
+    {
+        "doctype": "{doctype_4}"
+    }
 ]
 
 # Authentication and authorization
@@ -192,4 +201,3 @@ user_data_fields = [
 # auth_hooks = [
 #	"erpnext_customize.auth.validate"
 # ]
-

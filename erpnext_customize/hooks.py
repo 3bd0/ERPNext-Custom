@@ -114,6 +114,7 @@ doctype_js = {
     "Purchase Order": "public/js/purchase_order.js",
     "Quotation": "public/js/quotation.js",
     "Sales Invoice": "public/js/sales_invoice.js",
+    "Item": "public/js/item.js"
 }
 # for server
 doc_events = {
@@ -123,7 +124,9 @@ doc_events = {
                       ],
          "on_submit": [
              "erpnext_customize.erpnext_customize.doc_event.sales_invoice_event.check_customer_discount"
-         ]}
+         ]},
+    "Material Request":
+        {"on_submit": "erpnext_customize.erpnext_customize.doc_event.material_request_event.create_stock_entry"}
 }
 
 # Scheduled Tasks
